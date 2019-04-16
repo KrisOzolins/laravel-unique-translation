@@ -27,9 +27,9 @@ class UniqueTranslationValidator
         $pairIndexCounter = 2;
 
         while ($lookForIgnorePair) {
-            if (!empty($parameters[$pairIndexCounter]) && !empty($parameters[$pairIndexCounter + 1])) {
-                $ignoreValue = $this->filterNullValues($parameters[2] ?? null);
-                $ignoreColumn = $this->filterNullValues($parameters[3] ?? null);
+            if (isset($parameters[$pairIndexCounter]) && isset($parameters[$pairIndexCounter + 1])) {
+                $ignoreValue = $this->filterNullValues($parameters[$pairIndexCounter] ?? null);
+                $ignoreColumn = $this->filterNullValues($parameters[$pairIndexCounter + 1] ?? null);
     
                 $ignore[$ignoreColumn] = $ignoreValue;
 

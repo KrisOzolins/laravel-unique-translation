@@ -2,8 +2,7 @@
 
 namespace KrisOzolins\UniqueTranslation;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rules\DatabaseRule;
 
 class UniqueTranslationRule
 {
@@ -82,7 +81,7 @@ class UniqueTranslationRule
      */
     public function __toString()
     {
-        return rtrim(sprintf('$s:%s,%s,%s,%s,%s',
+        return rtrim(sprintf('%s:%s,%s,%s,%s,%s',
             $this->rule,
             $this->table,
             $this->column ?: 'NULL',
