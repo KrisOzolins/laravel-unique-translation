@@ -1,9 +1,9 @@
 <?php
 
-namespace CodeZero\UniqueTranslation\Tests;
+namespace KrisOzolins\UniqueTranslation\Tests;
 
-use CodeZero\UniqueTranslation\Tests\Stubs\Model;
-use CodeZero\UniqueTranslation\UniqueTranslationRule;
+use KrisOzolins\UniqueTranslation\Tests\Stubs\Model;
+use KrisOzolins\UniqueTranslation\UniqueTranslationRule;
 use Route;
 
 class UniqueTranslationTest extends TestCase
@@ -11,7 +11,7 @@ class UniqueTranslationTest extends TestCase
     protected $rule = 'unique_translation';
 
     /**
-     * @var \CodeZero\UniqueTranslation\Tests\Stubs\Model
+     * @var \KrisOzolins\UniqueTranslation\Tests\Stubs\Model
      */
     protected $model;
 

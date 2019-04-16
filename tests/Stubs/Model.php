@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeZero\UniqueTranslation\Tests\Stubs;
+namespace KrisOzolins\UniqueTranslation\Tests\Stubs;
 
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Spatie\Translatable\HasTranslations;

@@ -29,9 +29,9 @@ That's where this package comes in to play.
 Require the package via Composer:
 
 ```
-composer require codezero/laravel-unique-translation
+composer require krisozolins/laravel-unique-translation
 ```
-Laravel will automatically register the [ServiceProvider](https://github.com/codezero-be/laravel-unique-translation/blob/master/src/UniqueTranslationServiceProvider.php).
+Laravel will automatically register the [ServiceProvider](https://github.com/krisozolins/laravel-unique-translation/blob/master/src/UniqueTranslationServiceProvider.php).
 
 ## Usage
 
@@ -56,7 +56,7 @@ $attributes = request()->validate([
 You could also use the Rule instance:
 
 ```php
-use CodeZero\UniqueTranslation\UniqueTranslationRule;
+use KrisOzolins\UniqueTranslation\UniqueTranslationRule;
 
 $attributes = request()->validate([
     'slug' => ['required', UniqueTranslationRule::for('posts')],
@@ -190,12 +190,12 @@ vendor/bin/phpunit
 
 ## Security
 
-If you discover any security related issues, please [e-mail me](mailto:ivan@codezero.be) instead of using the issue tracker.
+If you discover any security related issues, please [e-mail me](mailto:kris.ozolins@gmailcom) instead of using the issue tracker.
 
 ## Changelog
 
-See a list of important changes in the [changelog](https://github.com/codezero-be/laravel-unique-translation/blob/master/CHANGELOG.md).
+See a list of important changes in the [changelog](https://github.com/krisozolins/laravel-unique-translation/blob/master/CHANGELOG.md).
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/codezero-be/laravel-unique-translation/blob/master/LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/krisozolins/laravel-unique-translation/blob/master/LICENSE.md) for more information.

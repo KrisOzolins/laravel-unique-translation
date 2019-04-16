@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeZero\UniqueTranslation;
+namespace KrisOzolins\UniqueTranslation;
 
 use Illuminate\Support\ServiceProvider;
 use Validator;

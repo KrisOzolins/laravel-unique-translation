@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeZero\UniqueTranslation;
+namespace KrisOzolins\UniqueTranslation;
 
 use DB;
 
@@ -21,15 +21,30 @@ class UniqueTranslationValidator
         $name = $attributeParts[0];
         $locale = $attributeParts[1] ?? app()->getLocale();
         $column = $this->filterNullValues($parameters[1] ?? null) ?: $name;
-        $ignoreValue = $this->filterNullValues($parameters[2] ?? null);
-        $ignoreColumn = $this->filterNullValues($parameters[3] ?? null);
+
+        $ignore = [];
+        $lookForIgnorePair = true;
+        $pairIndexCounter = 2;
+
+        while ($lookForIgnorePair) {
+            if (!empty($parameters[$pairIndexCounter]) && !empty($parameters[$pairIndexCounter + 1])) {
+                $ignoreValue = $this->filterNullValues($parameters[2] ?? null);
+                $ignoreColumn = $this->filterNullValues($parameters[3] ?? null);
+    
+                $ignore[$ignoreColumn] = $ignoreValue;
+
+                $pairIndexCounter += 2;
+            } else {
+                $lookForIgnorePair = false;
+            }
+        }
 
         $table = $parameters[0] ?? null;
         $tableParts = explode('.', $table);
         $connection = isset($tableParts[1]) ? $tableParts[0] : config('database.default');
         $table = $tableParts[1] ?? $tableParts[0];
 
-        $isUnique = $this->isUnique($value, $locale, $connection, $table, $column, $ignoreValue, $ignoreColumn);
+        $isUnique = $this->isUnique($value, $locale, $connection, $table, $column, $ignore);
 
         if ( ! $isUnique) {
             $this->addErrorsToValidator($validator, $parameters, $name, $locale);
@@ -68,11 +83,14 @@ class UniqueTranslationValidator
      *
      * @return bool
      */
-    protected function isUnique($value, $locale, $connection, $table, $column, $ignoreValue = null, $ignoreColumn = null)
+    protected function isUnique($value, $locale, $connection, $table, $column, $ignore)
     {
         $query = $this->findTranslation($connection, $table, $column, $locale, $value);
-        $query = $this->ignore($query, $ignoreColumn, $ignoreValue);
 
+        foreach ($ignore as $column => $value) {
+            $query = $this->ignore($query, $column, $value);
+        }
+       
         $isUnique = $query->count() === 0;
 
         return $isUnique;

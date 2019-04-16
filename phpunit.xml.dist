@@ -9,7 +9,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="CodeZero">
+        <testsuite name="KrisOzolins">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>

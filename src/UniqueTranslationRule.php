@@ -1,9 +1,14 @@
 <?php
 
-namespace CodeZero\UniqueTranslation;
+namespace KrisOzolins\UniqueTranslation;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Rules;
 
 class UniqueTranslationRule
 {
+    use DatabaseRule;
+
     /**
      * @var string
      */
@@ -77,13 +82,13 @@ class UniqueTranslationRule
      */
     public function __toString()
     {
-        return sprintf(
-            '%s:%s,%s,%s,%s',
+        return rtrim(sprintf('$s:%s,%s,%s,%s,%s',
             $this->rule,
             $this->table,
             $this->column ?: 'NULL',
-            $this->ignoreValue ?: 'NULL',
-            $this->ignoreColumn ?: 'NULL'
-        );
+            $this->ignoreValue ? '"'.$this->ignoreValue.'"' : 'NULL',
+            $this->ignoreColumn ?: 'NULL',
+            $this->formatWheres()
+        ), ',');
     }
 }

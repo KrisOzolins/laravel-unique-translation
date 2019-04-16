@@ -1,8 +1,8 @@
 <?php
 
-namespace CodeZero\UniqueTranslation\Tests;
+namespace KrisOzolins\UniqueTranslation\Tests;
 
-use CodeZero\UniqueTranslation\UniqueTranslationServiceProvider;
+use KrisOzolins\UniqueTranslation\UniqueTranslationServiceProvider;
 use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Route;

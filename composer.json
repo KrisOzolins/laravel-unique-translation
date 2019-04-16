@@ -1,12 +1,12 @@
 {
-    "name": "codezero/laravel-unique-translation",
-    "description": "",
+    "name": "krisozolins/laravel-unique-translation",
+    "description": "Fork of codezero-be/laravel-unique-translation package",
     "keywords": [],
     "license": "MIT",
     "authors": [
         {
-            "name": "Ivan Vermeyen",
-            "email": "ivan@codezero.be"
+            "name": "Krisjanis Ozolins",
+            "email": "kris.ozolins@gmail.com"
         }
     ],
     "require": {
@@ -21,18 +21,18 @@
     },
     "autoload": {
         "psr-4": {
-            "CodeZero\\UniqueTranslation\\": "src"
+            "KrisOzolins\\UniqueTranslation\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CodeZero\\UniqueTranslation\\Tests\\": "tests"
+            "KrisOzolins\\UniqueTranslation\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "CodeZero\\UniqueTranslation\\UniqueTranslationServiceProvider"
+                "KrisOzolins\\UniqueTranslation\\UniqueTranslationServiceProvider"
             ]
         }
     },
