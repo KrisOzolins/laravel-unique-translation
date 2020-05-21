@@ -16,7 +16,8 @@ class UniqueTranslationValidator
      *
      * @return bool
      */
-    public function validate($attribute, $value, $parameters, $validator) {
+    public function validate($attribute, $value, $parameters, $validator)
+    {
         $attributeParts = explode('.', $attribute);
         $name = $attributeParts[0];
         $locale = $attributeParts[1] ?? app()->getLocale();
@@ -30,7 +31,7 @@ class UniqueTranslationValidator
             if (isset($parameters[$pairIndexCounter]) && isset($parameters[$pairIndexCounter + 1])) {
                 $ignoreValue = $this->filterNullValues($parameters[$pairIndexCounter] ?? null);
                 $ignoreColumn = $this->filterNullValues($parameters[$pairIndexCounter + 1] ?? null);
-    
+
                 $ignore[$ignoreColumn] = $ignoreValue;
 
                 $pairIndexCounter += 2;
@@ -46,7 +47,7 @@ class UniqueTranslationValidator
 
         $isUnique = $this->isUnique($value, $locale, $connection, $table, $column, $ignore);
 
-        if ( ! $isUnique) {
+        if (!$isUnique) {
             $this->addErrorsToValidator($validator, $parameters, $name, $locale);
         }
 
@@ -90,7 +91,7 @@ class UniqueTranslationValidator
         foreach ($ignore as $column => $value) {
             $query = $this->ignore($query, $column, $value);
         }
-       
+
         $isUnique = $query->count() === 0;
 
         return $isUnique;
@@ -108,7 +109,7 @@ class UniqueTranslationValidator
      */
     protected function findTranslation($connection, $table, $column, $locale, $value)
     {
-        return DB::connection($connection)->table($table)->where("{$column}->{$locale}", '=', $value);
+        return DB::connection($connection)->table($table)->where("{$column}->{$locale}", '=', $value)->whereNull('deleted_at');
     }
 
     /**
